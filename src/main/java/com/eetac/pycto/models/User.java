@@ -6,6 +6,7 @@ public class User {
 	String user;
 	String password;
 	String email;
+	
 	public long getId() {
 		return id;
 	}
