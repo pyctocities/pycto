@@ -16,12 +16,23 @@ public class UserManager {
 		
 		sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();
-		
 	}
 	
 	
 	public boolean login(String user, String password){
-		
+		Session session = sessionFactory.openSession();
+	    Transaction tx = null;
+        tx = session.beginTransaction();
+
+        /*
+        
+        Codigo con hibernate
+        
+        */
+            
+        
+        session.close(); 
+
 		return false;
 	}
 	
@@ -31,7 +42,13 @@ public class UserManager {
 		Session session = sessionFactory.openSession();
 	    Transaction tx = null;
         tx = session.beginTransaction();
-
+        
+        /*
+        
+        Codigo con hibernate
+        
+        */
+        
 		session.save(userRegister);
         tx.commit();
         

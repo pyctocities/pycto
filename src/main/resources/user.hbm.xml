@@ -10,6 +10,6 @@
       </id>
       <property name="user"/>
       <property name="password"/>
-      <property name="email"/>
+      <property name="email" unique="true"/>
    </class>
 </hibernate-mapping>
