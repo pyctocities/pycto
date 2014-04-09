@@ -1,12 +1,24 @@
 package com.eetac.pycto.models;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class User {
 	
+	@Id
 	long id;
 	String user;
 	String password;
 	String email;
 	
+	public User(long id, String user, String password, String email) {
+		super();
+		this.id = id;
+		this.user = user;
+		this.password = password;
+		this.email = email;
+	}
 	public long getId() {
 		return id;
 	}

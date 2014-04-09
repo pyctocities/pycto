@@ -19,13 +19,13 @@ public class HomePage extends WebPage {
 		
 		UserManager mng = new UserManager();
 		
-		User userRe = new User();
-		
-		userRe.setUser("jordi");
-		userRe.setEmail("jordipalasole@gmail.com");
-		userRe.setPassword("ola");
-		
-		mng.register(userRe);
+//		User userRe = new User();
+//
+//		userRe.setUser("jordi");
+//		userRe.setEmail("jordipalasole@gmail.com");
+//		userRe.setPassword("ola");
+//
+//		mng.register(userRe);
 		
     }
 }
