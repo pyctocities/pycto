@@ -61,6 +61,21 @@ public class UserManager {
 
 	}
 	
+	public long obtain_num_votes(String user_name){
+		Session sesion = sessionFactory.openSession();
+		sesion.beginTransaction();
+		
+		Query q = sesion.createQuery("select num_votes from User where user='"+user_name+"'");
+
+		int num_votes = (Integer) q.uniqueResult();
+
+		sesion.getTransaction().commit();
+		sesion.close();
+		
+		return num_votes;
+
+	}
+	
 	public boolean find_user(User user) {
 		Session sesion = sessionFactory.openSession();
 		sesion.beginTransaction();
@@ -85,7 +100,7 @@ public class UserManager {
 		Session sesion = sessionFactory.openSession();
 		sesion.beginTransaction();
 		UserManager user_manager = new UserManager();
-		User userRegister= new User(user_manager.obtain_id_unique()+1, name, password, mail);
+		User userRegister= new User(user_manager.obtain_id_unique()+1, name, password, mail,0);
 		
 		boolean found = find_user(userRegister);
 

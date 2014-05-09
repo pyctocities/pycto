@@ -11,24 +11,32 @@ public class User {
 	String user;
 	String password;
 	String email;
+	int num_votes;
 	
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	public User(long id, String user, String password, String email) {
+	public User(long id, String user, String password, String email, int num_votes) {
 		super();
 		this.id = id;
 		this.user = user;
 		this.password = password;
 		this.email = email;
+		this.num_votes=num_votes;
 	}
 	public long getId() {
 		return id;
 	}
 	public void setId(long id) {
 		this.id = id;
+	}
+	public int getNum_votes() {
+		return num_votes;
+	}
+	public void setNum_votes(int num_votes) {
+		this.num_votes = num_votes;
 	}
 	public String getUser() {
 		return user;
