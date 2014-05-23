@@ -4,12 +4,19 @@
  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
 
 <hibernate-mapping>
-   <class name="com.eetac.pycto.models.User" table="user">
+   <class name="com.eetac.pycto.models.CA_CR" table="CA_CR">
       <id name="id" column="ID">
          <generator class="native"/>
       </id>
-      <property name="user"/>
+      <property name="name" unique="true"/>
       <property name="password"/>
-      <property name="email" unique="true"/>
+      <property name="email" />
+   </class>
+      <class name="com.eetac.pycto.models.Ballot_Box" table="Ballot_Box">
+      <id name="pseudonimum" column="ID">
+         <generator class="native"/>
+      </id>
+      <property name="pseudonimum_certificated" unique="true"/>
+      <property name="photos_voted"/>
    </class>
 </hibernate-mapping>

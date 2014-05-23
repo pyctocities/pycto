@@ -27,10 +27,6 @@
 		<!-- Echo all executed SQL to stdout -->
 		<property name="show_sql">true</property>
 
-		<!-- JORDI, LO HAGO CON ANOTACIONES, QUE ES MÁS FÁCIL Y DIRECTO -->
-		<!-- Echo all executed SQL to stdout -->
-		<!-- <property name='show_sql'>true</property> -->
-		<!-- Mapping files -->
-		<!-- <mapping resource="user.hbm.xml"/> -->
+
 	</session-factory>
 </hibernate-configuration>

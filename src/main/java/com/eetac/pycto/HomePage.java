@@ -4,8 +4,7 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.WebPage;
 
-import com.eetac.pycto.managers.UserManager;
-import com.eetac.pycto.models.User;
+import com.eetac.pycto.models.Ballot_Box;
 
 public class HomePage extends WebPage {
 	private static final long serialVersionUID = 1L;
@@ -17,7 +16,6 @@ public class HomePage extends WebPage {
 
 		// TODO Add your page's components here
 		
-		UserManager mng = new UserManager();
 		
 //		User userRe = new User();
 //
