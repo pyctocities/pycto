@@ -76,6 +76,7 @@ public class ApiPycto {
 				@Context HttpServletRequest request) {
 
 			Gson g = new Gson();
+			
 		    String output;
 		    ServerCACR um = new ServerCACR();
 		    HttpSession session = request.getSession(true);
