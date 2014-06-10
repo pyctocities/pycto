@@ -40,9 +40,10 @@ public class ServerBallotBox {
 		Session sesion = sessionFactory.openSession();
 		sesion.beginTransaction();
 
-		Query q = sesion.createQuery("from Ballot_Box where pseudonimum='"
-				+ pseudo + "'");
 
+		Query q = sesion.createQuery("from Ballot_Box where pseudonimum= :pseudo");
+		q.setParameter("pseudo", pseudo);
+		
 		Ballot_Box PhotoExtracted = (Ballot_Box) q.uniqueResult();
 		sesion.getTransaction().commit();
 		sesion.close();

@@ -3,6 +3,7 @@ package com.eetac.pycto.managers;
 import java.math.BigInteger;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.interfaces.RSAPrivateKey;
@@ -42,12 +43,21 @@ public class ServerCACR {
 		sessionFactory = config.buildSessionFactory();
 	}
 
-	public boolean login(String dni, String password) {
+	public boolean login(String mail, String password) {
 		Session sesion = sessionFactory.openSession();
 		sesion.beginTransaction();
 
-		Query q = sesion.createQuery("from CA_CR where dni='" + dni
-				+ "' and password='" + password + "'");
+		MessageDigest md = null;
+		try {
+			md = MessageDigest.getInstance("SHA-1");
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		
+		Query q = sesion
+				.createQuery("from CA_CR where mail= :mail and password= :password");
+		q.setParameter("mail", mail);
+		q.setParameter("password", String.valueOf(md.digest(password.getBytes())));
 
 		CA_CR userExtracted = (CA_CR) q.uniqueResult();
 
@@ -66,9 +76,8 @@ public class ServerCACR {
 		Session sesion = sessionFactory.openSession();
 		sesion.beginTransaction();
 
-		Query q = sesion.createQuery("from CA_CR where dni = '" + user.getDni()
-				+ "'");
-
+		Query q = sesion.createQuery("from CA_CR where mail = :mail");
+		q.setParameter("mail", user.getMail());
 		CA_CR userExtracted = (CA_CR) q.uniqueResult();
 
 		sesion.getTransaction().commit();
@@ -100,9 +109,16 @@ public class ServerCACR {
 		Session sesion = sessionFactory.openSession();
 		sesion.beginTransaction();
 
+		MessageDigest md = null;
+		try {
+			md = MessageDigest.getInstance("SHA-1");
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+
 		ServerCACR cacr = new ServerCACR();
 		CA_CR userRegister = new CA_CR(user.getDni(), user.getMail(),
-				user.getPassword());
+				String.valueOf(md.digest(user.getPassword().getBytes())));
 
 		boolean found = cacr.find_user(userRegister);
 
