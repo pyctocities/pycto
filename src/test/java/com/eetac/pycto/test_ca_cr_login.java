@@ -11,7 +11,7 @@ public class test_ca_cr_login {
 	@Test
 	public void test() {
 		ServerCACR cacr=new ServerCACR();
-		assertEquals("prueba login", true, cacr.login("@", "1234"));
+		assertEquals("prueba login", true, cacr.login("4@", "1234"));
 	}
 
 }

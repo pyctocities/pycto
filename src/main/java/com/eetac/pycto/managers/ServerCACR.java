@@ -48,8 +48,21 @@ public class ServerCACR {
 		sesion.beginTransaction();
 
 		MessageDigest md = null;
+		String generatedPassword = null;
+		
 		try {
 			md = MessageDigest.getInstance("SHA-1");
+			md.update(password.getBytes());
+			byte[] passbytes = md.digest();
+			
+			StringBuilder sb = new StringBuilder();
+            for(int i=0; i< passbytes.length ;i++)
+            {
+                sb.append(Integer.toString((passbytes[i] & 0xff) + 0x100, 16).substring(1));
+            }
+            //Get complete hashed password in hex format
+            generatedPassword = sb.toString();
+            
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
@@ -57,7 +70,12 @@ public class ServerCACR {
 		Query q = sesion
 				.createQuery("from CA_CR where mail= :mail and password= :password");
 		q.setParameter("mail", mail);
-		q.setParameter("password", String.valueOf(md.digest(password.getBytes())));
+		
+		
+		System.out.println("LOGIN: El digestivo: "+md.digest(password.getBytes()));
+		System.out.println("LOGIN: String value of: "+String.valueOf(md.digest(password.getBytes())));
+
+		q.setParameter("password", generatedPassword);
 
 		CA_CR userExtracted = (CA_CR) q.uniqueResult();
 
@@ -110,15 +128,31 @@ public class ServerCACR {
 		sesion.beginTransaction();
 
 		MessageDigest md = null;
+		String generatedPassword = null;
+		
 		try {
 			md = MessageDigest.getInstance("SHA-1");
+			md.update(user.getPassword().getBytes());
+			byte[] passbytes = md.digest();
+			
+			StringBuilder sb = new StringBuilder();
+            for(int i=0; i< passbytes.length ;i++)
+            {
+                sb.append(Integer.toString((passbytes[i] & 0xff) + 0x100, 16).substring(1));
+            }
+            //Get complete hashed password in hex format
+            generatedPassword = sb.toString();
+            
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
 
 		ServerCACR cacr = new ServerCACR();
 		CA_CR userRegister = new CA_CR(user.getDni(), user.getMail(),
-				String.valueOf(md.digest(user.getPassword().getBytes())));
+				generatedPassword);
+		
+		System.out.println("REGISTER: El digestivo: "+md.digest(user.getPassword().getBytes()));
+		System.out.println("REGISTER: String value of: "+String.valueOf(md.digest(user.getPassword().getBytes())));
 
 		boolean found = cacr.find_user(userRegister);
 
