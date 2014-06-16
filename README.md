@@ -49,7 +49,6 @@ sslProtocol="TLS"
 
 https://localhost:8081/pycto
 
-
 10. Ens demanara que aceptem el certificat (la pantalla groga de chrome).
 
 11. El HTTPS surt en vermell i taxat degut aque no ha estat firmat per una CA de confiansa (perque surtis verd hauriem de pagar alguna entitat certificadora perque ens el firmes ells i el chrome el veies de confiansa). 
