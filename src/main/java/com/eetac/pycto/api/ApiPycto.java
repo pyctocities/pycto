@@ -99,9 +99,8 @@ public class ApiPycto {
 		/**
 		 * Firma de certificado
 		 */
-		@POST
+		@GET
 		@Path("/signcertificate/{blindcsr}")
-		@Consumes(MediaType.MULTIPART_FORM_DATA)
 		public Response signcertificate(
 				@PathParam("blindcsr") BigInteger blindcsr,
 				@Context HttpServletRequest request) {
@@ -114,7 +113,7 @@ public class ApiPycto {
 	    	if (user!=null) {
 			    ServerCACR um = new ServerCACR();
 			    BigInteger certificate = um.certificate(blindcsr);	
-				return Response.status(200).entity(certificate).build();
+				return Response.status(200).entity(certificate.toString()).build();
 	    	}
 	    	else
 	    	{
