@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.reflect.Type;
+import java.math.BigInteger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -31,7 +32,6 @@ public class ApiPycto {
 	
 	private static final String SERVER_UPLOAD_LOCATION_FOLDER = "C:/Users/Victorz/";
 
-
 		@GET
 		@Path("/prova/{param}")
 		public Response getMsg(@PathParam("param") String msg) {
@@ -42,7 +42,6 @@ public class ApiPycto {
 	 
 		}
 
-		
 		@GET
 		@Path("/login/{user}/{password}")
 		public Response login(
@@ -96,6 +95,35 @@ public class ApiPycto {
 			return Response.status(200).entity(output).build();
 	 
 		}
+		
+		/**
+		 * Firma de certificado
+		 */
+		@POST
+		@Path("/signcertificate/{blindcsr}")
+		@Consumes(MediaType.MULTIPART_FORM_DATA)
+		public Response signcertificate(
+				@PathParam("blindcsr") BigInteger blindcsr,
+				@Context HttpServletRequest request) {
+			
+	    	HttpSession session= request.getSession(true);
+	    	Object user = session.getAttribute("user");
+	    	
+	    	String output = null;
+	    	
+	    	if (user!=null) {
+			    ServerCACR um = new ServerCACR();
+			    BigInteger certificate = um.certificate(blindcsr);	
+				return Response.status(200).entity(certificate).build();
+	    	}
+	    	else
+	    	{
+	    		output = "No estas logueado, no puedes firmar el CSR";
+				return Response.status(200).entity(output).build();
+	    	}
+	    	
+	    }	
+		
 		/**
 		 * Upload a File
 		 */
