@@ -32,7 +32,7 @@ Per a poder habilitar HTTPS al servidor tomcat de l'Eclipse hem de fer el següe
 
 8. Afegim la següent part de codi (els camps que haurem de canviar es keyStoreFile per el nom del fitxer que hem donat i KeystorePass per la password que haguem posat anteriorment):
 
-    <Connector
+    "<Connector
     SSLEnabled="true"
     clientAuth="false"
     keyAlias="pycto"
@@ -43,7 +43,7 @@ Per a poder habilitar HTTPS al servidor tomcat de l'Eclipse hem de fer el següe
     scheme="https"
     secure="true"
     sslProtocol="TLS"
-    />
+    />"
 
 9. Un cop afegit lo anterior, fem run as del rpojecte i entrem per la següent URL:
 
