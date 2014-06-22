@@ -74,7 +74,7 @@ public class ServerBallotBox {
 		// 5º: Certificado:E(H(pseudonimo_usuario, clave publica usuario), clave
 		// privada CA)
 
-		// suponemos que todo esto lo separararemos por el patrón "..//.."
+		// suponemos que todo esto lo separararemos por el patrón "$$&&$$"
 
 		if (verificate_certificate(ballet_vote) == true) {
 			System.out.println("la clave publica y el pseudonimo están certificados por la CA");
@@ -102,7 +102,7 @@ public class ServerBallotBox {
 	 sesion.beginTransaction();
 	
 	 //volvemos a subdivir nuestro mensaje del cliente
-	 String[] vote_parts = vote.split("..//..");
+	 String[] vote_parts = vote.split("$$&&$$");
 	
 	 //le quitamos al array de JSON lo necesario para obtener el JSON PURO
 	 String replace = vote_parts[0].replace("[", "");
@@ -133,7 +133,7 @@ public class ServerBallotBox {
 	public boolean verificate_certificate(String vote) {
 		CA_CR_keys cacr_keys = new CA_CR_keys();
 		//Este es el patrón de división nuestro mensaje
-		String[] vote_parts = vote.split("..//..");
+		String[] vote_parts = vote.split("$$&&$$");
 
 		//clave publica de la CA. SUPONEMOS (segun JUAN) que ya la tenemos por defecto.
 		RSAPublicKey pubKey = CA_CR_keys.getPubKey();
@@ -187,7 +187,7 @@ public class ServerBallotBox {
 		// "test_ballot_box_vote_inpunity_code.java"
 
 		// partimos el codigo por el patrón de división "..//.."
-		String[] vote_parts = vote.split("..//..");
+		String[] vote_parts = vote.split("$$&&$$");
 
 		// se hace el hash de los votos en claro
 		String clear_vote_post_hash = null;
