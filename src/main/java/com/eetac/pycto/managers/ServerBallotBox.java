@@ -191,17 +191,13 @@ public class ServerBallotBox {
 
 		// se hace el hash de los votos en claro
 		String clear_vote_post_hash = null;
+		
 		try {
 			MessageDigest md = MessageDigest.getInstance("SHA-1");
 			md.update(vote_parts[0].getBytes());
 			byte[] passbytes = md.digest();
-
-			StringBuilder sb = new StringBuilder();
-			for (int i = 0; i < passbytes.length; i++) {
-				sb.append(Integer.toString((passbytes[i] & 0xff) + 0x100, 16)
-						.substring(1));
-			}
-			clear_vote_post_hash = sb.toString();
+			BigInteger HASH_json_id_fotos = new BigInteger(1,passbytes);
+			clear_vote_post_hash = HASH_json_id_fotos.toString();
 
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();

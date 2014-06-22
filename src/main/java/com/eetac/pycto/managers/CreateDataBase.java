@@ -1,5 +1,7 @@
 package com.eetac.pycto.managers;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,14 +43,35 @@ public class CreateDataBase {
 				
 				sesion.beginTransaction();
 				
+				String password = "1234";
+				MessageDigest md = null;
+				String hashedpassword = null;
+				
+				try {
+					md = MessageDigest.getInstance("SHA-1");
+					md.update(password.getBytes());
+					byte[] passbytes = md.digest();
+					
+					StringBuilder sb = new StringBuilder();
+		            for(int i=0; i< passbytes.length ;i++)
+		            {
+		                sb.append(Integer.toString((passbytes[i] & 0xff) + 0x100, 16).substring(1));
+		            }
+		            //Get complete hashed password in hex format
+		            hashedpassword = sb.toString();
+		            
+				} catch (NoSuchAlgorithmException e) {
+					e.printStackTrace();
+				}
+				
 
 				CA_CR user;
 				
-				user= new CA_CR("47667698Z", "jotagarcia1992@gmail.com", "1234");
+				user= new CA_CR("47667698Z", "jotagarcia1992@gmail.com", hashedpassword);
 				sesion.save(user);
-				user= new CA_CR("46123123Z", "victorramirez1991@gmail.com", "1234");
+				user= new CA_CR("46123123Z", "victorramirez1991@gmail.com", hashedpassword);
 				sesion.save(user);
-				user= new CA_CR("47123123Z", "jordi_pala@carteras", "1234");
+				user= new CA_CR("47123123Z", "jordipalasole@gmail.com", hashedpassword);
 				sesion.save(user);
 				
 				
