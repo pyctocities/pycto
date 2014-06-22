@@ -182,22 +182,4 @@ public class ServerCACR {
 
 	}
 
-	// public boolean find_user_dni(String dni) {
-	// Session sesion = sessionFactory.openSession();
-	// sesion.beginTransaction();
-	//
-	// Query q = sesion.createQuery("from CA_CR where dni = '"
-	// +dni + "'");
-	//
-	// CA_CR userExtracted = (CA_CR) q.uniqueResult();
-	//
-	// sesion.getTransaction().commit();
-	// sesion.close();
-	//
-	// if (userExtracted == null) {
-	// return false;
-	// } else {
-	// return true;
-	// }
-	// }
 }

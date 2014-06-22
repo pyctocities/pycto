@@ -9,6 +9,7 @@ import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 
 import com.eetac.pycto.models.Ballot_Box;
+import com.eetac.pycto.models.Ballot_Box_photo;
 import com.eetac.pycto.models.CA_CR;
 
 
@@ -22,6 +23,7 @@ public class CreateDataBase {
 				AnnotationConfiguration config = new AnnotationConfiguration();
 				config.addAnnotatedClass(CA_CR.class);
 				config.addAnnotatedClass(Ballot_Box.class);
+				config.addAnnotatedClass(Ballot_Box_photo.class);
 				config.configure();
 				
 			
@@ -58,6 +60,10 @@ public class CreateDataBase {
 				votes= new Ballot_Box("pseudo_victor", "pseudo_victor_cert", "JSON_VOTOS");
 				sesion.save(votes);
 				
+				Ballot_Box_photo photos;
+				photos= new Ballot_Box_photo("12");
+				sesion.save(photos);
+		
 				sesion.getTransaction().commit();
 				
 				
