@@ -103,13 +103,9 @@ public class ServerBallotBox {
 	 //volvemos a subdivir nuestro mensaje del cliente
 	 String[] vote_parts = vote.split("$$&&$$");
 	
-	 //le quitamos al array de JSON lo necesario para obtener el JSON PURO
-	 String replace = vote_parts[0].replace("[", "");
-	 String replace_2 = replace.replace("]", "");
-	 String JSON_String = replace_2;
-	
+
 	 // obtenemos el objeto y lo vamos guardando en la base de datos
-	 String[] JSON_Strings = JSON_String.split("&");
+	 String[] JSON_Strings = vote_parts[0].split("&");
 	 
 		for (int i = 0; i < 5; i++) {
 			Ballot_Box vote_to_insert = null;
