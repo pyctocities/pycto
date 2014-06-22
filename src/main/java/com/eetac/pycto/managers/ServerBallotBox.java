@@ -94,7 +94,6 @@ public class ServerBallotBox {
 			System.out.println("ERROR: no está certificado por la CA o se han modificado los datos");
 			return false;
 		}
-
 	}
 
 	 public void insert_vote_foto_into_database(String vote) {
@@ -110,16 +109,12 @@ public class ServerBallotBox {
 	 String JSON_String = replace_2;
 	
 	 // obtenemos el objeto y lo vamos guardando en la base de datos
-	 String[] JSON_Strings = JSON_String.split(",");
+	 String[] JSON_Strings = JSON_String.split("&");
 	 
 		for (int i = 0; i < 5; i++) {
-			Gson g = new Gson();
 			Ballot_Box vote_to_insert = null;
-			Ballot_Box_photo foto = new Gson().fromJson(JSON_Strings[i],
-					Ballot_Box_photo.class);
-
-			// hacemos el formato ACORDADO para el voto: id_foto, pseudonimo,
-			// certificado
+			Ballot_Box_photo foto=null;
+			foto.setId(JSON_Strings[i]);
 			vote_to_insert = new Ballot_Box(vote_parts[2], vote_parts[4],
 					foto.getId());
 
@@ -150,10 +145,10 @@ public class ServerBallotBox {
 
 		// luego entonces, si todo es correcto, decrypted_certificated tiene que
 		// ser igual al hash del pseudonimo y la clavepublica del usuario 
-		//(posición 3 y 4 del mensaje)
+		// (posición 3 y 4 del mensaje)
 		String pseudonimo_kpub_cliente = vote_parts[2] + vote_parts[3];
 
-		//Hacemos el HASH de los datos en claro
+		// Hacemos el HASH de los datos en claro
 		String hash_pseudonimo_kpub_cliente = null;
 		try {
 			MessageDigest md = MessageDigest.getInstance("SHA-1");
