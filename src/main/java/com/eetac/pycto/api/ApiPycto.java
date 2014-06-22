@@ -20,6 +20,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.eetac.pycto.managers.ServerBallotBox;
 import com.eetac.pycto.managers.ServerCACR;
 import com.eetac.pycto.models.CA_CR;
 import com.google.gson.Gson;
@@ -114,6 +115,34 @@ public class ApiPycto {
 			    ServerCACR um = new ServerCACR();
 			    BigInteger certificate = um.certificate(blindcsr);	
 				return Response.status(200).entity(certificate.toString()).build();
+	    	}
+	    	else
+	    	{
+	    		output = "No estas logueado, no puedes firmar el CSR";
+				return Response.status(200).entity(output).build();
+	    	}
+	    	
+	    }	
+		
+		/**
+		 * Votar
+		 */
+		@GET
+		@Path("/vote/{string_pepina}")
+		public Response vote(
+				@PathParam("string_pepina") String string_pepina,
+				@Context HttpServletRequest request) {
+			
+	    	HttpSession session= request.getSession(true);
+	    	Object user = session.getAttribute("user");
+	    	
+	    	String output = null;
+	    	
+	    	if (user!=null) {
+	    		ServerBallotBox m = new ServerBallotBox();
+	    		boolean result = m.vote(string_pepina);
+			    
+				return Response.status(200).entity(result).build();
 	    	}
 	    	else
 	    	{
