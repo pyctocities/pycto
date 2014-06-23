@@ -101,7 +101,7 @@ public class ServerBallotBox {
 	 sesion.beginTransaction();
 	
 	 //volvemos a subdivir nuestro mensaje del cliente
-	 String[] vote_parts = vote.split("$$&&$$");
+	 String[] vote_parts = vote.split("-");
 	
 
 	 // obtenemos el objeto y lo vamos guardando en la base de datos
@@ -124,7 +124,7 @@ public class ServerBallotBox {
 	public boolean verificate_certificate(String vote) {
 		CA_CR_keys cacr_keys = new CA_CR_keys();
 		//Este es el patrón de división nuestro mensaje
-		String[] vote_parts = vote.split("$$&&$$");
+		String[] vote_parts = vote.split("-");
 
 		//clave publica de la CA. SUPONEMOS (segun JUAN) que ya la tenemos por defecto.
 		RSAPublicKey pubKey = CA_CR_keys.getPubKey();
@@ -133,8 +133,7 @@ public class ServerBallotBox {
 
 		//Ahora veremos si el Usuario tiene un certificado firmado por la CA
 		//vote_parts[4] = el certificado firmado por la CA
-		BigInteger certificate = null;
-		certificate.add(new BigInteger(vote_parts[4]));
+		BigInteger certificate = new BigInteger(vote_parts[4]);
 
 		// desencriptamos el certificado
 		BigInteger decrypted_certificated = certificate.modPow(e, n);
@@ -178,7 +177,7 @@ public class ServerBallotBox {
 		// "test_ballot_box_vote_inpunity_code.java"
 
 		// partimos el codigo por el patrón de división "..//.."
-		String[] vote_parts = vote.split("$$&&$$");
+		String[] vote_parts = vote.split("-");
 
 		// se hace el hash de los votos en claro
 		String clear_vote_post_hash = null;
