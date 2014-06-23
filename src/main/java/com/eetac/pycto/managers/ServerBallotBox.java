@@ -77,10 +77,10 @@ public class ServerBallotBox {
 		// suponemos que todo esto lo separararemos por el patrón "$$&&$$"
 
 		if (verificate_certificate(ballet_vote) == true) {
-			System.out.println("la clave publica y el pseudonimo están certificados por la CA");
+			System.out.println("OK: la clave publica y el pseudonimo están certificados por la CA");
 			
 			if (verificate_inpunity_votes(ballet_vote) == true) {
-				System.out.println("los votos no se han modificado");
+				System.out.println("OK: los votos no se han modificado");
 				
 				insert_vote_foto_into_database(ballet_vote);
 				return true;
@@ -204,19 +204,18 @@ public class ServerBallotBox {
 		// se desencripta con la clave publica del cliente (verificada anteriormente) los votos 
 		// hasheados la clave publica del usuario la tenemos en claro e la 4 posicion del mensaje de voto
 		// en el la 4º pos del mensaje está separado el exponente publico del cliente y el modulo por ",,"
-		String[] kpub_parts = vote_parts[3].split(",,");
-		BigInteger client_pub_key = null;
-		client_pub_key.add(new BigInteger(kpub_parts[0]));
-
-		BigInteger client_modulus = null;
-		client_modulus.add(new BigInteger(kpub_parts[1]));
-
-		// pasamos a BigInteger el encriptado del hash de los votos
-		BigInteger encrypted_vote_hash = null;
-		encrypted_vote_hash.add(new BigInteger(vote_parts[4]));
-
-		if (clear_vote_post_hash.equals(encrypted_vote_hash.modPow(
-				client_pub_key, client_modulus))) {
+		String[] kpub_parts = vote_parts[3].split("\\.\\.");
+		BigInteger client_pub_key = new BigInteger(kpub_parts[0]);
+		BigInteger client_modulus = new BigInteger(kpub_parts[1]);
+		
+		//Cogemos el hash encriptado con la clave privada del usuario, i aplicamos su clave publica
+		//para obtener el hash
+	
+		BigInteger hash_votos_encriptado_usuario = new BigInteger(vote_parts[1]);
+		BigInteger hash_votos_desencriptado = hash_votos_encriptado_usuario.modPow(client_pub_key, client_modulus);
+		
+		
+		if (clear_vote_post_hash.equals(hash_votos_desencriptado.toString())) {
 			return true;
 			// es lo mismo
 		} else {
