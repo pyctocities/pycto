@@ -127,42 +127,50 @@ public class ServerBallotBox {
 		String[] vote_parts = vote.split("-");
 
 		//clave publica de la CA. SUPONEMOS (segun JUAN) que ya la tenemos por defecto.
-		RSAPublicKey pubKey = CA_CR_keys.getPubKey();
-		BigInteger e = pubKey.getPublicExponent();
-		BigInteger n = pubKey.getModulus();
+//		RSAPublicKey pubKey = CA_CR_keys.getPubKey();
+//		BigInteger e = pubKey.getPublicExponent();
+//		BigInteger n = pubKey.getModulus();
+		
+		//Cogeremos i los fijamos:
+		
+		BigInteger n = new BigInteger("142481047092856236353738743136977805095584310438694847447732929440125014292455197492587396319295661312523380616370560540364318696807371547116571684603696850643510934945905963494827054536380775599044293414232308287850735160312467680401874891460335471177568255416928550974265562615081919894910514184398490834123");
+		BigInteger e = new BigInteger("65537");
 
 		//Ahora veremos si el Usuario tiene un certificado firmado por la CA
 		//vote_parts[4] = el certificado firmado por la CA
 		BigInteger certificate = new BigInteger(vote_parts[4]);
 
 		// desencriptamos el certificado
+		System.out.println("Certificat abans aplicar clau pub: "+certificate);
+
 		BigInteger decrypted_certificated = certificate.modPow(e, n);
+		
+		System.out.println("Pseudonim cert: "+decrypted_certificated);
 
 		// luego entonces, si todo es correcto, decrypted_certificated tiene que
 		// ser igual al hash del pseudonimo y la clavepublica del usuario 
 		// (posición 3 y 4 del mensaje)
-		String pseudonimo_kpub_cliente = vote_parts[2] + vote_parts[3];
 
+		String pseudonimo_kpub_cliente = vote_parts[2];
+		BigInteger pseudonim_cliente = new BigInteger(pseudonimo_kpub_cliente);
+		System.out.println("Pseudonim urls: "+pseudonimo_kpub_cliente);
+		
 		// Hacemos el HASH de los datos en claro
-		String hash_pseudonimo_kpub_cliente = null;
-		try {
-			MessageDigest md = MessageDigest.getInstance("SHA-1");
-			md.update(pseudonimo_kpub_cliente.getBytes());
-			byte[] passbytes = md.digest();
-
-			StringBuilder sb = new StringBuilder();
-			for (int i = 0; i < passbytes.length; i++) {
-				sb.append(Integer.toString((passbytes[i] & 0xff) + 0x100, 16)
-						.substring(1));
-			}
-			hash_pseudonimo_kpub_cliente = sb.toString();
-
-		} catch (NoSuchAlgorithmException e1) {
-			e1.printStackTrace();
-		}
-
+//		String hash_pseudonimo_kpub_cliente = null;
+//		MessageDigest md = null;
+//		BigInteger pseudonim_cegado2 = null;
+//		
+//		try {
+//			md = MessageDigest.getInstance("SHA-1");
+//			md.update(pseudonimo_kpub_cliente.getBytes());
+//			byte[] passbytes = md.digest();
+//			pseudonim_cegado2 = new BigInteger(1,passbytes);
+//			
+//		} catch (NoSuchAlgorithmException e1) {
+//			e1.printStackTrace();
+//		}
 		// Comparamos nuetro hash con el hash del certificado por la CA
-		if (hash_pseudonimo_kpub_cliente.equals(decrypted_certificated)) {
+		if (pseudonim_cliente.toString().equals(decrypted_certificated.toString())) {
 			return true;
 			// es lo mismo
 		} else {
