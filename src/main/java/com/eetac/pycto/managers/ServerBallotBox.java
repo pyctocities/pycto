@@ -106,14 +106,13 @@ public class ServerBallotBox {
 
 	 // obtenemos el objeto y lo vamos guardando en la base de datos
 	 String[] JSON_Strings = vote_parts[0].split("&");
-	 
+
 		for (int i = 0; i < 5; i++) {
 			Ballot_Box vote_to_insert = null;
-			Ballot_Box_photo foto=null;
-			foto.setId(JSON_Strings[i]);
-			vote_to_insert = new Ballot_Box(vote_parts[2], vote_parts[4],
-					foto.getId());
-
+			Ballot_Box_photo foto=new Ballot_Box_photo(JSON_Strings[i]);
+		
+			vote_to_insert = new Ballot_Box(vote_parts[2], vote_parts[4],foto.getId());
+			
 			// lo insertamos en la base de datos
 			sesion.save(vote_to_insert);
 		}
