@@ -43,20 +43,20 @@
             </div>
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#about">Bases</a></li>
-                <li><a href="#about">Votar</a></li>
-                <li><a href="#contact">Estadísticas</a></li>
+                <li><a href="#" wicket:id="index">Inicio</a></li>
+                <li><a href="#about" wicket:id="indexTerms">Bases</a></li>
+                <li><a href="#about" wicket:id="gallery">Votar</a></li>
+                <li><a href="#contact" wicket:id="stats">Estadísticas</a></li>
                 <li class="dropdown active">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Perfil <b class="caret"></b></a>
                   <ul class="dropdown-menu">
                     <li><a href="#">Datos</a></li>
-                    <li><a href="#">Subir foto</a></li>
+                    <li><a href="#" wicket:id="uploadphoto">Subir foto</a></li>
                     <li class="divider"></li>
                     <li><a href="#">Cerrar Sesión</a></li>
                   </ul>
                 </li>
-                <li><a href="#contact">Sobre nosotros</a></li>
+                <li><a href="#contact" wicket:id="aboutus">Sobre nosotros</a></li>
               </ul>
             </div>
           </div>
@@ -84,7 +84,7 @@
         <div class="col-sm-4">
           <div class="list-group">
             <a href="#" class="list-group-item active">Datos personales</a>
-            <a href="#" class="list-group-item">Subir foto para concursar</a>
+            <a href="#" class="list-group-item" wicket:id="uploadphoto1">Subir foto para concursar</a>
           </div>
         </div><!-- /.col-sm-4 -->
 

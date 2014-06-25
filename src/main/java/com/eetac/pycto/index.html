@@ -42,19 +42,19 @@
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Inicio</a></li>
-                <li><a href="#about">Bases</a></li>
-                <li><a href="#about">Votar</a></li>
-                <li><a href="#contact">Estadísticas</a></li>
+                <li><a href="#about" wicket:id="indexTerms1">Bases</a></li>
+                <li><a href="#about" wicket:id="gallery">Votar</a></li>
+                <li><a href="#contact" wicket:id="stats">Estadísticas</a></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Perfil <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a href="#">Datos</a></li>
-                    <li><a href="#">Subir foto</a></li>
+                    <li><a href="#" wicket:id="profile">Datos</a></li>
+                    <li><a href="#" wicket:id="uploadphoto">Subir foto</a></li>
                     <li class="divider"></li>
                     <li><a href="#">Cerrar Sesión</a></li>
                   </ul>
                 </li>
-                <li><a href="#contact">Sobre nosotros</a></li>
+                <li><a href="#contact" wicket:id="aboutus">Sobre nosotros</a></li>
               </ul>
             </div>
           </div>
@@ -81,7 +81,7 @@
       <div class="jumbotron">
         <h1>¡Concurso de 2014!</h1>
         <p class="lead">Deja libre tu creatividad y captura momentos mágicos y dignos de ser plasmados en una fotografía. ¡Todavía puedes participar y ganar muchos premios!</p>
-        <p><a class="btn btn-large btn-primary" href="#" role="button">Ver Bases del Concurso</a></p> 
+        <p><a class="btn btn-large btn-primary" href="#" role="button" wicket:id="indexTerms2">Ver Bases del Concurso</a></p> 
       </div>
 
       <!-- START THE FEATURETTES -->

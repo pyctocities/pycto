@@ -32,6 +32,14 @@ public class main extends WebPage {
 		final TextField userlogin = new TextField("usuari_login", Model.of(""));
 		final PasswordTextField passwordlogin = new PasswordTextField("password_login", Model.of(""));
 	   
+		
+		if(session.getAttribute("user")==null)
+		{
+        	PageParameters pageParameters = new PageParameters();
+			setResponsePage(index.class, pageParameters);
+		}
+		
+		
 
 		Form<?> formlogin = new Form<Void>("formlogin"){
 			@Override
@@ -50,9 +58,9 @@ public class main extends WebPage {
 			    	session.setAttribute("user", user);
 			    	info("Login correcte");
 			    	
-	        /*    	PageParameters pageParameters = new PageParameters();
-					setResponsePage(mainshop.class, pageParameters);
-					*/
+	            	PageParameters pageParameters = new PageParameters();
+					setResponsePage(index.class, pageParameters);
+					
 				}
 				else
 				{

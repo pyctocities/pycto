@@ -33,6 +33,7 @@ public class WicketApplication extends WebApplication
 		mountPackage("main",main.class);
 		mountPackage("terms",terms.class);
 		mountPackage("contactUs",contactUs.class);
+		mountPackage("index",index.class);
 
 
 		// add your configuration here
