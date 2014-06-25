@@ -1,5 +1,7 @@
 package com.eetac.pycto.models;
 
+import java.math.BigInteger;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -7,8 +9,9 @@ import javax.persistence.Id;
 public class Ballot_Box {
 	
 	@Id
-	String pseudonimum;
-	String pseudonimum_certificated;
+	int id_vote;
+	BigInteger pseudonimum;
+	BigInteger pseudonimum_certificated;
 	String photo_voted;
 	
 	public Ballot_Box() {
@@ -16,27 +19,28 @@ public class Ballot_Box {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Ballot_Box(String pseudonimum, String pseudonimum_certificated,
+	public Ballot_Box(int id, BigInteger pseudonimum, BigInteger pseudonimum_certificated,
 			String photo_voted) {
 		super();
+		this.id_vote=id;
 		this.pseudonimum = pseudonimum;
 		this.pseudonimum_certificated = pseudonimum_certificated;
 		this.photo_voted = photo_voted;
 	}
 
-	public String getPseudonimum() {
+	public BigInteger getPseudonimum() {
 		return pseudonimum;
 	}
 
-	public void setPseudonimum(String pseudonimum) {
+	public void setPseudonimum(BigInteger pseudonimum) {
 		this.pseudonimum = pseudonimum;
 	}
 
-	public String getPseudonimum_certificated() {
+	public BigInteger getPseudonimum_certificated() {
 		return pseudonimum_certificated;
 	}
 
-	public void setPseudonimum_certificated(String pseudonimum_certificated) {
+	public void setPseudonimum_certificated(BigInteger pseudonimum_certificated) {
 		this.pseudonimum_certificated = pseudonimum_certificated;
 	}
 

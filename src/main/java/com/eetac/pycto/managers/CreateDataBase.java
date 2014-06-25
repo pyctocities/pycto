@@ -76,13 +76,13 @@ public class CreateDataBase {
 				
 				
 
-				Ballot_Box votes;
-				
-				votes= new Ballot_Box("pseudo_jf", "pseudo_jf_cert", "JSON_VOTOS");
-				sesion.save(votes);
-				votes= new Ballot_Box("pseudo_victor", "pseudo_victor_cert", "JSON_VOTOS");
-				sesion.save(votes);
-				
+//				Ballot_Box votes;
+//				
+//				votes= new Ballot_Box("pseudo_jf", "pseudo_jf_cert", "JSON_VOTOS");
+//				sesion.save(votes);
+//				votes= new Ballot_Box("pseudo_victor", "pseudo_victor_cert", "JSON_VOTOS");
+//				sesion.save(votes);
+//				
 				Ballot_Box_photo photos;
 				photos= new Ballot_Box_photo("12");
 				sesion.save(photos);

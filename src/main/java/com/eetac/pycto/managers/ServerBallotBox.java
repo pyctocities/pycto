@@ -111,7 +111,15 @@ public class ServerBallotBox {
 			Ballot_Box vote_to_insert = null;
 			Ballot_Box_photo foto=new Ballot_Box_photo(JSON_Strings[i]);
 		
-			vote_to_insert = new Ballot_Box(vote_parts[2], vote_parts[4],foto.getId());
+			String pseudonimo_kpub_cliente = vote_parts[2];
+			BigInteger pseudonim_cliente = new BigInteger(pseudonimo_kpub_cliente);
+			
+			String cert = vote_parts[4];
+			BigInteger cert_cliente = new BigInteger(cert);
+			
+			vote_to_insert = new Ballot_Box(i,pseudonim_cliente, cert_cliente, foto.getId());
+			
+			System.out.println("foto_"+i+": "+vote_to_insert.getPhoto_voted());
 			
 			// lo insertamos en la base de datos
 			sesion.save(vote_to_insert);
