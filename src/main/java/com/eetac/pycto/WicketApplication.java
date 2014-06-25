@@ -27,6 +27,9 @@ public class WicketApplication extends WebApplication
 	public void init()
 	{
 		super.init();
+        getRequestCycleSettings().setResponseRequestEncoding("UTF-8"); 
+        getMarkupSettings().setDefaultMarkupEncoding("UTF-8"); 
+        
 		mountPackage("main",main.class);
 		mountPackage("terms",terms.class);
 		mountPackage("contactUs",contactUs.class);
