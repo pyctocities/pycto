@@ -35,6 +35,10 @@ public class main extends WebPage {
 		
 		if(session.getAttribute("user")==null)
 		{
+
+		}
+		else
+		{
         	PageParameters pageParameters = new PageParameters();
 			setResponsePage(index.class, pageParameters);
 		}
