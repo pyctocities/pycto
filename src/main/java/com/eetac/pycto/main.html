@@ -66,15 +66,15 @@
                   <h4 class="modal-title" id="myModalLabel" style="color:#000000; text-shadow: 0px 0px 0px;">Registro</h4>
                 </div>
                 <div class="modal-body">
-                  <form class="form-signin">
+                  <form class="form-signin" wicket:id="formregister">
                     <p style="text-align:left; color:#000000; text-shadow: 0px 0px 0px">Introduzca su email</p>
-                    <input type="text" class="form-control" placeholder="Correo Electrónico">
+                    <input type="text" class="form-control" placeholder="Correo Electrónico" wicket:id="correu_register">
                     <p style="text-align:left; color:#000000; text-shadow: 0px 0px 0px">Introduzca su DNI</p>
-                    <input type="text" class="form-control" placeholder="DNI">     
+                    <input type="text" class="form-control" placeholder="DNI" wicket:id="dni_register">     
                     <p style="text-align:left; color:#000000; text-shadow: 0px 0px 0px">Introduzca su contraseña</p>               
-                    <input type="password" class="form-control" placeholder="Contraseña">
+                    <input type="password" class="form-control" placeholder="Contraseña" wicket:id="password_register">
                     <p style="text-align:left; color:#000000; text-shadow: 0px 0px 0px">Repita su contraseña</p>
-                    <input type="password" class="form-control" placeholder="Repita Contraseña">
+                    <input type="password" class="form-control" placeholder="Repita Contraseña"  wicket:id="password_register2">
                     <p></p>
                     <button type="button" class="btn btn-default" data-dismiss="modal" style="border:1px solid #e5e5e5">Cerrar</button>
                     <button class="btn btn-large btn-primary" type="submit">Regístrame!</button>

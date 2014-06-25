@@ -13,6 +13,7 @@ import org.apache.wicket.model.Model;
 
 import com.eetac.pycto.managers.ServerCACR;
 import com.eetac.pycto.models.Ballot_Box;
+import com.eetac.pycto.models.CA_CR;
 
 
 public class main extends WebPage {
@@ -22,10 +23,11 @@ public class main extends WebPage {
 		super(parameters);
 		add(new org.apache.wicket.markup.html.panel.FeedbackPanel("feedback"));
 
+		final Session session = getSession();
 		
 		final TextField userlogin = new TextField("usuari_login", Model.of(""));
 		final PasswordTextField passwordlogin = new PasswordTextField("password_login", Model.of(""));
-	    final Session session = getSession();
+	   
 
 		Form<?> formlogin = new Form<Void>("formlogin"){
 			@Override
@@ -60,6 +62,57 @@ public class main extends WebPage {
 		formlogin.add(userlogin);
 		formlogin.add(passwordlogin);
 		add(formlogin);
+		
+		final TextField correuregister = new TextField("correu_register", Model.of(""));
+		final TextField dniregister = new TextField("dni_register", Model.of(""));
+		final PasswordTextField passregister = new PasswordTextField("password_register", Model.of(""));
+		final PasswordTextField passregister2 = new PasswordTextField("password_register2", Model.of(""));
+
+
+		Form<?> formregister = new Form<Void>("formregister"){
+			@Override
+            public void onSubmit()
+            {
+				ServerCACR cacr=new ServerCACR();
+
+			
+				String correu = correuregister.getValue();
+				String dni = dniregister.getValue();
+				String pass = passregister.getValue();
+				String pass2 = passregister2.getValue();
+
+				
+				if(pass.equals(pass2))  //mira si los passwords son iguales
+				{
+					CA_CR user=new CA_CR(dni, correu, pass);
+
+					if(cacr.find_user(user))
+					{
+						error("El usuario ya existe");
+
+					}
+					else
+					{
+						cacr.register(user);
+						info("El usuario se ha registrado correctamente");
+					}
+
+				}
+				else
+				{
+					error("Los passwords no son iguales");
+
+				}
+
+            }
+			
+		};
+		formregister.add(correuregister);
+		formregister.add(dniregister);
+		formregister.add(passregister);
+		formregister.add(passregister2);
+
+		add(formregister);
 		
 		
     }
