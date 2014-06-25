@@ -1,5 +1,7 @@
 package com.eetac.pycto;
 
+import java.util.Scanner;
+
 import javax.servlet.http.HttpSession;
 
 import org.apache.wicket.Session;
@@ -10,10 +12,12 @@ import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.markup.html.link.Link;
 
 import com.eetac.pycto.managers.ServerCACR;
 import com.eetac.pycto.models.Ballot_Box;
 import com.eetac.pycto.models.CA_CR;
+
 
 
 public class main extends WebPage {
@@ -114,6 +118,30 @@ public class main extends WebPage {
 
 		add(formregister);
 		
+		
+		final Link terms = new Link("terms")
+		{
+			@Override
+			public void onClick()  //Cuan apretem el boto de facebook, fara aixo
+			{
+				PageParameters pageParameters = new PageParameters();
+				setResponsePage(terms.class, pageParameters);
+			}
+		};
+		
+		final Link contactUs = new Link("contactUs")
+		{
+			@Override
+			public void onClick()  //Cuan apretem el boto de facebook, fara aixo
+			{
+				PageParameters pageParameters = new PageParameters();
+				setResponsePage(contactUs.class, pageParameters);
+			}
+		};
+		
+		add(terms);
+		add(contactUs);
+
 		
     }
 }
