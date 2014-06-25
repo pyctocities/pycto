@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="assets/ico/icon_32.png">
+
+    <title>Pycto</title>
+
+    <!-- Bootstrap core CSS -->
+    <!-- <link href="../../dist/css/bootstrap.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom styles for this template -->
+    <link href="assets/css/indexTerms.css" rel="stylesheet">
+
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+
+    <script>
+// Note: This example requires that you consent to location sharing when
+// prompted by your browser. If you see a blank space instead of the map, this
+// is probably because you have denied permission for location sharing.
+
+var map;
+
+function initialize() {
+  var mapOptions = {
+    zoom: 8
+  };
+  map = new google.maps.Map(document.getElementById('map-canvas'),
+      mapOptions);
+
+  // Try HTML5 geolocation
+  if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var pos = new google.maps.LatLng(position.coords.latitude,
+                                       position.coords.longitude);
+
+      var infowindow = new google.maps.InfoWindow({
+        map: map,
+        position: pos,
+        content: 'Location found using HTML5.'
+      });
+
+      map.setCenter(pos);
+    }, function() {
+      handleNoGeolocation(true);
+    });
+  } else {
+    // Browser doesn't support Geolocation
+    handleNoGeolocation(false);
+  }
+}
+
+function handleNoGeolocation(errorFlag) {
+  if (errorFlag) {
+    var content = 'Error: The Geolocation service failed.';
+  } else {
+    var content = 'Error: Your browser doesn\'t support geolocation.';
+  }
+
+  var options = {
+    map: map,
+    position: new google.maps.LatLng(60, 105),
+    content: content
+  };
+
+  var infowindow = new google.maps.InfoWindow(options);
+  map.setCenter(options.position);
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+
+  </head>
+<!-- NAVBAR
+================================================== -->
+  <body onload="initialize()">
+    <div class="navbar-wrapper">
+      <div class="container">
+
+        <div class="navbar navbar-inverse navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">Pycto</a>
+            </div>
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#about">Bases</a></li>
+                <li><a href="#about">Votar</a></li>
+                <li class="active"><a href="#contact">Estadísticas</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Perfil <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Datos</a></li>
+                    <li><a href="#">Subir foto</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Cerrar Sesión</a></li>
+                  </ul>
+                </li>
+                <li><a href="#contact">Sobre nosotros</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+
+    <div class="container marketing">
+      <div class="bs-docs-header">
+        <div class="container">
+          <h1>Estadísticas</h1>
+          <p>Lugares más populares, sitios preferidos,...</p>
+        </div>
+      </div>
+
+<!--       <div class="page-header" style="text-align:center">
+        <h1>Comunidades con mayor índice de participantes</h1>
+      </div> -->
+
+      <!-- Three columns of text below the header *********** Estadísticas por COMUNIDAD-->
+<!--       <div class="row">
+        <p></p>
+        <div class="col-lg-4">
+          <img class="img-rounded" src="http://placehold.it/200x200" width="200" height="200" style="border-radius:50%">
+          <h2>Comunidad 1</h2>
+        </div --><!-- /.col-lg-4 -->
+<!--         <div class="col-lg-4">
+          <img class="img-rounded" src="http://placehold.it/200x200" width="200" height="200" style="border-radius:50%">
+          <h2>Comunidad 2</h2>
+        </div --><!-- /.col-lg-4 -->
+<!--         <div class="col-lg-4">
+          <img class="img-rounded" src="http://placehold.it/200x200" width="200" height="200" style="border-radius:50%">
+          <h2>Comunidad 3</h2>
+        </div> --><!-- /.col-lg-4 -->
+<!--       </div> --><!-- /.row -->
+
+      <div class="page-header" style="text-align:center">
+        <h1>Ubicaciones de las fotografías</h1>
+      </div>
+
+    </div><!-- /.container -->
+    <p></p>
+    <div id="map-canvas" style="width:50%; height:50%; margin-left:25%"></div> 
+      <!-- Mapa de les ubicacions de les fotos -->
+    <div class="container marketing">
+      <hr class="featurette-divider">
+
+      <!-- FOOTER -->
+      <footer>
+        <p class="pull-right"><a href="#">Back to top</a></p>
+        <p>&copy; 2014 Pycto &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+      </footer>
+    </div><!-- container marketing of footer -->
+    
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="assets/js/jquery.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <!-- <script src="../../dist/js/bootstrap.min.js"></script> -->
+    <script src="../../assets/js/holder.js"></script>
+
+  </body>
+</html>
