@@ -126,12 +126,13 @@ public class ApiPycto {
 		
 		/**
 		 * Votar
+		 * @throws IOException 
 		 */
 		@GET
 		@Path("/vote/{string_pepina}")
 		public Response vote(
 				@PathParam("string_pepina") String string_pepina,
-				@Context HttpServletRequest request) {
+				@Context HttpServletRequest request) throws IOException {
 			
 	    	HttpSession session= request.getSession(true);
 	    	Object user = session.getAttribute("user");
