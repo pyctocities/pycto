@@ -17,7 +17,7 @@ public class WicketApplication extends WebApplication
 	@Override
 	public Class<? extends WebPage> getHomePage()
 	{
-		return HomePage.class;
+		return main.class;
 	}
 
 	/**
@@ -27,6 +27,10 @@ public class WicketApplication extends WebApplication
 	public void init()
 	{
 		super.init();
+		mountPackage("main",main.class);
+		mountPackage("terms",terms.class);
+		mountPackage("contactUs",contactUs.class);
+
 
 		// add your configuration here
 	}

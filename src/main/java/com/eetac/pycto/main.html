@@ -50,7 +50,8 @@
           <div class="inner cover">
             <h1 class="cover-heading">¡Participa en el concurso 2014!</h1>
             <p class="lead">Participa en uno de los concursos fotográficos más importantes de los últimos años. Sube tu imagen, deja que voten por ella y vota tú de forma totalmente anónima. ¡Dáte prisa, todavía tienes tiempo!</p>
-            <p class="lead">
+            <p class="lead">	 		 		<div wicket:id="feedback"></div>	 	
+            
               <button href="#" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModalRegister">Regístrate</button>
               <button href="#" class="btn btn-lg btn-success" data-toggle="modal" data-target="#myModalLogin">Inicia sesión</button>
             </p>
@@ -92,9 +93,9 @@
                   <h4 class="modal-title" id="myModalLabel" style="color:#000000; text-shadow: 0px 0px 0px;">Inicio de sesión</h4>
                 </div>
                 <div class="modal-body">
-                    <form class="form-signin">
-                      <input type="text" class="form-control" placeholder="Correo Electrónico">
-                      <input type="password" class="form-control" placeholder="Contraseña">
+                    <form class="form-signin" wicket:id="formlogin">
+                      <input type="text" class="form-control" placeholder="Correo Electrónico" wicket:id="usuari_login">
+                      <input type="password" class="form-control" placeholder="Contraseña"  wicket:id="password_login">
                       <button type="button" class="btn btn-default" data-dismiss="modal" style="border:1px solid #e5e5e5">Cerrar</button>
                       <button class="btn btn-large btn-primary" type="submit">Iniciar sesión</button>
                     </form>                 
