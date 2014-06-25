@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="assets/ico/icon_32.png">
+
+    <title>Pycto</title>
+
+    <!-- Bootstrap core CSS -->
+    <!-- <link href="../../dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+    <!-- Custom styles for this template -->
+    <link href="assets/css/cover.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand">Pyct<img class="img-circle" src="assets/ico/icon_32.png" width="30" height="30"></h3>
+              <ul class="nav masthead-nav">
+                <li class="active"><a href="#">Inicio</a></li>
+                <li><a href="#">Bases</a></li>
+                <li><a href="#">Contáctanos</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="inner cover">
+            <h1 class="cover-heading">¡Participa en el concurso 2014!</h1>
+            <p class="lead">Participa en uno de los concursos fotográficos más importantes de los últimos años. Sube tu imagen, deja que voten por ella y vota tú de forma totalmente anónima. ¡Dáte prisa, todavía tienes tiempo!</p>
+            <p class="lead">
+              <button href="#" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModalRegister">Regístrate</button>
+              <button href="#" class="btn btn-lg btn-success" data-toggle="modal" data-target="#myModalLogin">Inicia sesión</button>
+            </p>
+          </div>
+
+          <!-- Modal for Register-->
+          <div class="modal fade" id="myModalRegister" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="myModalLabel" style="color:#000000; text-shadow: 0px 0px 0px;">Registro</h4>
+                </div>
+                <div class="modal-body">
+                  <form class="form-signin">
+                    <p style="text-align:left; color:#000000; text-shadow: 0px 0px 0px">Introduzca su email</p>
+                    <input type="text" class="form-control" placeholder="Correo Electrónico">
+                    <p style="text-align:left; color:#000000; text-shadow: 0px 0px 0px">Introduzca su DNI</p>
+                    <input type="text" class="form-control" placeholder="DNI">     
+                    <p style="text-align:left; color:#000000; text-shadow: 0px 0px 0px">Introduzca su contraseña</p>               
+                    <input type="password" class="form-control" placeholder="Contraseña">
+                    <p style="text-align:left; color:#000000; text-shadow: 0px 0px 0px">Repita su contraseña</p>
+                    <input type="password" class="form-control" placeholder="Repita Contraseña">
+                    <p></p>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" style="border:1px solid #e5e5e5">Cerrar</button>
+                    <button class="btn btn-large btn-primary" type="submit">Regístrame!</button>
+                  </form>                  
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal for Login -->
+          <div class="modal fade" id="myModalLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="myModalLabel" style="color:#000000; text-shadow: 0px 0px 0px;">Inicio de sesión</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-signin">
+                      <input type="text" class="form-control" placeholder="Correo Electrónico">
+                      <input type="password" class="form-control" placeholder="Contraseña">
+                      <button type="button" class="btn btn-default" data-dismiss="modal" style="border:1px solid #e5e5e5">Cerrar</button>
+                      <button class="btn btn-large btn-primary" type="submit">Iniciar sesión</button>
+                    </form>                 
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Footer -->
+          <div class="mastfoot">
+            <div class="inner">
+              <p>© 2014 Pycto. Made with <a href="http://getbootstrap.com">Bootstrap</a></p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- <script src="../../dist/js/bootstrap.min.js"></script> -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <!-- <script src="../../assets/js/docs.min.js"></script> -->
+  </body>
+</html>
