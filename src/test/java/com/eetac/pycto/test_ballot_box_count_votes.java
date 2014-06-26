@@ -10,7 +10,7 @@ import java.io.Reader;
 
 import org.junit.Test;
 
-public class test_ballot_box_read_votes {
+public class test_ballot_box_count_votes {
 
 	@Test
 	public void test() {
@@ -31,7 +31,7 @@ public class test_ballot_box_read_votes {
 				for (int i = 0; linea != null; i++) {
 					String[] vote_parts = linea.split(":");
 
-					for (int k = 1; k<4; k++) {
+					for (int k = 0; k<4; k++) {
 						System.out.println(k+" - - - "+vote_parts[k]);
 					}
 					linea = br.readLine();

@@ -122,13 +122,52 @@ public class ServerBallotBox {
 		}
 	}
 
+	public void read_votes_from_a_file() throws IOException {
+	
+	File archivo = new File("..//votes.txt");
+	FileReader fr = null;
+	BufferedReader br = null;
+
+	try {
+		fr = new FileReader(archivo);
+		br = new BufferedReader(fr);
+
+		String linea;
+		while ((linea = br.readLine()) != null) {
+			linea = br.readLine();
+			System.out.println(linea);
+
+			for (int i = 0; linea != null; i++) {
+				String[] vote_parts = linea.split(":");
+
+				for (int k = 0; k<4; k++) {
+					System.out.println(k+" - - - "+vote_parts[k]);
+				}
+				linea = br.readLine();
+			}
+
+		}
+	} catch (Exception e) {
+		e.printStackTrace();
+	} finally {
+		try {
+			if (null != fr) {
+				fr.close();
+			}
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		}
+	}
+}
+	
+	
 	public void insert_vote_foto_into_database(String vote) throws IOException {
 
 		String[] vote_parts = vote.split("-");
 
 		String[] JSON_Strings = vote_parts[0].split("&");
 		
-		FileWriter fichero = new FileWriter("../votes.txt",true);
+		FileWriter fichero = new FileWriter("..//votes.txt",true);
 
 		PrintWriter pw = new PrintWriter(fichero);
 		try {
