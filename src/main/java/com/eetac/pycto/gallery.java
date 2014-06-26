@@ -1,11 +1,14 @@
 package com.eetac.pycto;
 
+import java.util.List;
+
 import org.apache.wicket.Session;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.WebPage;
 
+import com.eetac.pycto.managers.ServerBallotBox;
 import com.eetac.pycto.models.Ballot_Box;
 
 public class gallery extends WebPage {
@@ -108,12 +111,32 @@ public class gallery extends WebPage {
 			}
 		};
 		
+		ServerBallotBox m = new ServerBallotBox();
+		
+		List<String> images = m.listimages();
+		
+		String url="";
+		for(String file:images)
+		{
+			url = url+"<div class=\"col-lg-3 col-md-4 col-xs-6 thumb\">"+ 
+		            "<a class=\"thumbnail\" href=\"#\">"+
+		               " <img class=\"img-responsive\" src=\""+"http://localhost/images/"+file+"\" width=\"400\" height=\"300\">"+
+		               "<p></p>"+
+		                "<p><span>"+file+"</span></p>"+
+		            "</a>"+
+		        "</div>";
+		}
+		
+		Label spanurl = new Label("gallery",url);
+		spanurl.setEscapeModelStrings(false);
+
 		add(aboutus);
 		add(uploadphoto);
 		add(profile);
 		add(stats);
 		add(indexTerms);
 		add(index);
+		add(spanurl);
 		add(votebox);
     }
 }

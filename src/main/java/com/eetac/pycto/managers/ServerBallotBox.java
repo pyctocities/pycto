@@ -1,5 +1,6 @@
 package com.eetac.pycto.managers;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,8 +9,10 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -43,9 +46,25 @@ public class ServerBallotBox {
 		config.addAnnotatedClass(Ballot_Box.class);
 		config.addAnnotatedClass(CA_CR.class);
 		config.configure();
-
+  
 		sessionFactory = config.buildSessionFactory();
 	}
+	
+	public List<String> listimages()
+	{
+		final File folder = new File("C:\\xampp\\htdocs\\images\\");
+		List<String> llistaimatges = new ArrayList<String>();
+		
+	    for (final File fileEntry : folder.listFiles()) {
+	    	
+	    	llistaimatges.add(fileEntry.getName());
+	    	
+	    }
+	    
+	    return llistaimatges;
+
+	}
+	
 
 	public boolean vote_not_repited(String pseudo) {
 		Session sesion = sessionFactory.openSession();

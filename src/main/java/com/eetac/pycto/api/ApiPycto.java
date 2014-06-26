@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.reflect.Type;
 import java.math.BigInteger;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -31,7 +32,7 @@ import com.sun.jersey.multipart.FormDataParam;
 @Path("/api")
 public class ApiPycto {
 	
-	private static final String SERVER_UPLOAD_LOCATION_FOLDER = "C:/Users/Victorz/";
+	private static final String SERVER_UPLOAD_LOCATION_FOLDER = "C:/xampp/htdocs/images/";
 
 		@GET
 		@Path("/prova/{param}")
@@ -40,7 +41,7 @@ public class ApiPycto {
 			String output = "Jersey say : " + msg;
 	 
 			return Response.status(200).entity(output).build();
-	 
+	   
 		}
 
 		@GET
@@ -96,6 +97,52 @@ public class ApiPycto {
 			return Response.status(200).entity(output).build();
 	 
 		}
+		
+		/**
+		 * Firma de certificado
+		 */
+		@GET
+		@Path("/getimages")
+		public Response signcertificate(
+				@Context HttpServletRequest request) {
+			
+	    	HttpSession session= request.getSession(true);
+	    	Object user = session.getAttribute("user");
+	    	
+	    	String output = "";
+	    	
+	    	if (user!=null) {
+			    ServerBallotBox um = new ServerBallotBox();
+			    
+			    List<String> imatges = um.listimages();
+			    
+			    int i=0;
+			    
+			    for(String file: imatges)
+			    {
+			    	if(i==0)
+			    	{
+			    		output = file;
+			    	}
+			    	else
+			    	{
+			    		output = output+"&"+file;
+			    	}
+			    	i++;
+
+			    }
+			    
+				return Response.status(200).entity(output).build();
+
+	    	}
+	    	else
+	    	{
+	    		output = "No estas logueado, no puedes firmar el CSR";
+				return Response.status(200).entity(output).build();
+	    	}
+	    	
+	    }	
+		
 		
 		/**
 		 * Firma de certificado
