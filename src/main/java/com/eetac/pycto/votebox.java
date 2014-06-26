@@ -1,11 +1,15 @@
 package com.eetac.pycto;
 
+import java.io.IOException;
+import java.util.List;
+
 import org.apache.wicket.Session;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.WebPage;
 
+import com.eetac.pycto.managers.ServerBallotBox;
 import com.eetac.pycto.models.Ballot_Box;
 
 
@@ -113,8 +117,46 @@ public class votebox extends WebPage {
 			}
 		};
 		
+				
+		
+		ServerBallotBox m = new ServerBallotBox();
+		String url = "";
+		try {
+			List<String> ola = m.getvotes();
+			int i =0;
+			for(String linea:ola)
+			{
+					if(i==0)
+					{
+						url = "<tr>"+
+								"<td>"+linea+"</td>"+
+								
+								"</tr>";
+						
+					}
+					else
+					{
+						url = url+"<tr>"+
+								"<td>"+linea+"</td>"+
+								"</tr>";
+					}
+					
+					i++;
+				
+			}
+			
+			
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Label votebox = new Label("votebox",url);
+		votebox.setEscapeModelStrings(false);
+
 		add(index);
 		add(aboutus);
+		add(votebox);
 		add(uploadphoto);
 		add(profile);
 		add(stats);

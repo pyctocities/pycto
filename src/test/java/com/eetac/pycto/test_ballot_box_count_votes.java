@@ -1,6 +1,5 @@
 package com.eetac.pycto;
 
-import static org.junit.Assert.*;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -9,6 +8,7 @@ import java.io.IOException;
 import java.io.Reader;
 
 import org.junit.Test;
+
 
 public class test_ballot_box_count_votes {
 
