@@ -6,6 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="assets/ico/icon_32.png">
+    
 
     <title>Pycto</title>
 
@@ -22,77 +23,10 @@
     <!-- Custom styles for this template -->
     <link href="assets/css/indexTerms.css" rel="stylesheet">
 
-    <style>
-      html, body, #map-canvas {
-        height: 100%;
-        margin: 0px;
-        padding: 0px
-      }
-    </style>
-
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-
-    <script>
-// Note: This example requires that you consent to location sharing when
-// prompted by your browser. If you see a blank space instead of the map, this
-// is probably because you have denied permission for location sharing.
-
-var map;
-
-function initialize() {
-  var mapOptions = {
-    zoom: 8
-  };
-  map = new google.maps.Map(document.getElementById('map-canvas'),
-      mapOptions);
-
-  // Try HTML5 geolocation
-  if(navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      var pos = new google.maps.LatLng(position.coords.latitude,
-                                       position.coords.longitude);
-
-      var infowindow = new google.maps.InfoWindow({
-        map: map,
-        position: pos,
-        content: 'Location found using HTML5.'
-      });
-
-      map.setCenter(pos);
-    }, function() {
-      handleNoGeolocation(true);
-    });
-  } else {
-    // Browser doesn't support Geolocation
-    handleNoGeolocation(false);
-  }
-}
-
-function handleNoGeolocation(errorFlag) {
-  if (errorFlag) {
-    var content = 'Error: The Geolocation service failed.';
-  } else {
-    var content = 'Error: Your browser doesn\'t support geolocation.';
-  }
-
-  var options = {
-    map: map,
-    position: new google.maps.LatLng(60, 105),
-    content: content
-  };
-
-  var infowindow = new google.maps.InfoWindow(options);
-  map.setCenter(options.position);
-}
-
-google.maps.event.addDomListener(window, 'load', initialize);
-
-    </script>
-
   </head>
 <!-- NAVBAR
 ================================================== -->
-  <body onload="initialize()">
+  <body>
     <div class="navbar-wrapper">
       <div class="container">
 
@@ -111,8 +45,8 @@ google.maps.event.addDomListener(window, 'load', initialize);
                 <li><a href="#" wicket:id="index">Inicio</a></li>
                 <li><a href="#about" wicket:id="indexTerms">Bases</a></li>
                 <li><a href="#about" wicket:id="gallery">Votar</a></li>
-                <li><a href="#about" wicket:id="votebox">Urna</a></li>
-                <li class="active"><a href="#contact">Estadísticas</a></li>
+                <li class="active"><a href="#about">Urna</a></li>
+                <li><a href="#contact" wicket:id="stats">Estadísticas</a></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Perfil <b class="caret"></b></a>
                   <ul class="dropdown-menu">
@@ -135,45 +69,54 @@ google.maps.event.addDomListener(window, 'load', initialize);
     ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
 
-
     <div class="container marketing">
+
       <div class="bs-docs-header">
         <div class="container">
-          <h1>Estadísticas</h1>
-          <p>Lugares más populares, sitios preferidos,...</p>
+          <h1>Urna</h1>
+          <p>Recuento de votos del concurso.</p>
         </div>
-      </div>
+      </div> 
 
-<!--       <div class="page-header" style="text-align:center">
-        <h1>Comunidades con mayor índice de participantes</h1>
-      </div> -->
-
-      <!-- Three columns of text below the header *********** Estadísticas por COMUNIDAD-->
-<!--       <div class="row">
+      <!-- Three columns of text below the carousel -->
+      <div class="row" style="margin-left:1%; margin-right:1%">
         <p></p>
-        <div class="col-lg-4">
-          <img class="img-rounded" src="http://placehold.it/200x200" width="200" height="200" style="border-radius:50%">
-          <h2>Comunidad 1</h2>
-        </div --><!-- /.col-lg-4 -->
-<!--         <div class="col-lg-4">
-          <img class="img-rounded" src="http://placehold.it/200x200" width="200" height="200" style="border-radius:50%">
-          <h2>Comunidad 2</h2>
-        </div --><!-- /.col-lg-4 -->
-<!--         <div class="col-lg-4">
-          <img class="img-rounded" src="http://placehold.it/200x200" width="200" height="200" style="border-radius:50%">
-          <h2>Comunidad 3</h2>
-        </div> --><!-- /.col-lg-4 -->
-<!--       </div> --><!-- /.row -->
 
-      <div class="page-header" style="text-align:center">
-        <h1>Ubicaciones de las fotografías</h1>
-      </div>
+        <!-- Alerta de urna no visible -->
+        <div class="alert alert-warning"> <!-- with the attribute hidden, we hide the warning -->
+          <strong>¡Lo sentimos!</strong> Todavía no se ha cerrado el período de votación y no se puede consultar la urna.
+        </div>
 
-    </div><!-- /.container -->
-    <p></p>
-    <div id="map-canvas" style="width:50%; height:50%; margin-left:25%"></div> 
-      <!-- Mapa de les ubicacions de les fotos -->
-    <div class="container marketing">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Pseudónimo</th>
+                <th>ID Foto</th>
+                <th>Certificado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Pseudónimo 1</td>
+                <td>3, 4, 5, 8, 2</td>
+                <td>sdjfbiugrpiqeurbvoñervgòeqjrbv</td>
+              </tr>
+              <tr>
+                <td>Pseudónimo 2</td>
+                <td>1, 2, 3, 4, 5</td>
+                <td>sdjfbiugrpiqeurbvoñervgòeqjrbv</td>
+              </tr>
+              <tr>
+                <td>Pseudónimo 3</td>
+                <td>1, 6, 3, 9, 5</td>
+                <td>sdjfbiugrpiqeurbvoñervgòeqjrbv</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div><!-- /.row -->
+
       <hr class="featurette-divider">
 
       <!-- FOOTER -->
@@ -181,8 +124,8 @@ google.maps.event.addDomListener(window, 'load', initialize);
         <p class="pull-right"><a href="#">Back to top</a></p>
         <p>&copy; 2014 Pycto &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
       </footer>
-    </div><!-- container marketing of footer -->
-    
+
+    </div><!-- /.container -->
 
 
     <!-- Bootstrap core JavaScript

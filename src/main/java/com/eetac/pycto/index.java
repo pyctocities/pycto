@@ -72,6 +72,15 @@ public class index extends WebPage {
 			}
 		};
 
+		final Link votebox = new Link("votebox")
+		{
+			@Override
+			public void onClick()  //Cuan apretem el boto de facebook, fara aixo
+			{
+				PageParameters pageParameters = new PageParameters();
+				setResponsePage(votebox.class, pageParameters);
+			}
+		};
 		
 		final Link stats = new Link("stats")
 		{
@@ -118,8 +127,10 @@ public class index extends WebPage {
 		add(profile);
 		add(stats);
 		add(gallery);
+		add(votebox);
 		add(indexTerms1);
 		add(indexTerms2);
+		
 
     }
 }
