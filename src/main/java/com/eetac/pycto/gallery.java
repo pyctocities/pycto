@@ -3,6 +3,7 @@ package com.eetac.pycto;
 import java.util.List;
 
 import org.apache.wicket.Session;
+import org.apache.wicket.request.flow.RedirectToUrlException;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
@@ -10,6 +11,7 @@ import org.apache.wicket.markup.html.WebPage;
 
 import com.eetac.pycto.managers.ServerBallotBox;
 import com.eetac.pycto.models.Ballot_Box;
+
 
 public class gallery extends WebPage {
 	private static final long serialVersionUID = 1L;
@@ -68,6 +70,17 @@ public class gallery extends WebPage {
 			{
 				PageParameters pageParameters = new PageParameters();
 				setResponsePage(votebox.class, pageParameters);
+			}
+		};
+		
+		
+		final Link applet = new Link("applet")
+		{
+			@Override
+			public void onClick()  //Cuan apretem el boto de facebook, fara aixo
+			{
+				throw new RedirectToUrlException("http://localhost/Applet/ola.html");
+
 			}
 		};
 		
@@ -137,6 +150,7 @@ public class gallery extends WebPage {
 		add(indexTerms);
 		add(index);
 		add(spanurl);
+		add(applet);
 		add(votebox);
     }
 }
