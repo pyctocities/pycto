@@ -1,5 +1,6 @@
 package com.eetac.pycto;
 
+import org.apache.wicket.Session;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
@@ -13,7 +14,30 @@ public class gallery extends WebPage {
 	public gallery(final PageParameters parameters) {
 		super(parameters);
 
+		Session sesio = getSession();
 		
+		if(sesio.getAttribute("user")==null)
+		{
+        	PageParameters pageParameters = new PageParameters();
+			setResponsePage(index.class, pageParameters);	
+		}
+		
+		final Link<?> logout = new Link<Object>("logout")
+		        {
+		            @Override
+		            public void onClick()  //Quan apretem el boto de facebook, fara aixo
+		            {
+					  Session session = this.getSession();
+					  session.invalidateNow();
+					  
+					  PageParameters pageParameters = new PageParameters();
+					  setResponsePage(main.class, pageParameters);
+					  
+							
+		            }
+		        };
+		
+		add(logout);
 		final Link index = new Link("index")
 		{
 			@Override

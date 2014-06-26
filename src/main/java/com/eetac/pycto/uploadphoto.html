@@ -53,7 +53,7 @@
                     <li><a href="#" wicket:id="profile">Datos</a></li>
                     <li><a href="#" >Subir foto</a></li>
                     <li class="divider"></li>
-                    <li><a href="#">Cerrar Sesión</a></li>
+                    <li><a href="#" wicket:id="logout">Cerrar Sesión</a></li>
                   </ul>
                 </li>
                 <li><a href="#contact" wicket:id="aboutus">Sobre nosotros</a></li>
@@ -83,7 +83,7 @@
 
         <div class="col-sm-4">
           <div class="list-group">
-            <a href="#" class="list-group-item">Datos personales</a>
+            <a href="#" class="list-group-item" wicket:id="profile2">Datos personales</a>
             <a href="#" class="list-group-item active">Subir foto para concursar</a>
           </div>
         </div><!-- /.col-sm-4 -->
@@ -101,11 +101,18 @@
                 <br></br> 
                 <img data-src="holder.js/200x200" class="img-thumbnail" alt="200x200" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2VlZSIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEwMCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEzcHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MjAweDIwMDwvdGV4dD48L3N2Zz4=" style="width: 200px; height: 200px; align:center">
                 <br></br> 
-<!--                  <fieldset>
-                  <input wicket:id="fileInput" type="file" />
-                  <p></p>
-                  <input type="submit" value="Cargar"/>
-                </fieldset> -->
+                
+	<div wicket:id="feedback"></div>
+	<form wicket:id="form">
+		<p>
+			<label>Selecionar imagen :</label> 
+			<input wicket:id="fileUpload" size="40" type="file"/>
+			<p></p>
+			<input type="submit" value="Upload"/>
+		</p>
+	</form>
+                
+                
                 <p></p>
 <!--                 <div class="alert alert-warning">
                   <strong>¡Ojo!</strong> Todavía no has subido ninguna foto para participar en el concurso.

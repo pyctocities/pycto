@@ -107,6 +107,20 @@ public class ServerCACR {
 			return true;
 		}
 	}
+	
+	public String obtain_dni(String user) {
+		Session sesion = sessionFactory.openSession();
+		sesion.beginTransaction();
+
+		Query q = sesion.createQuery("from CA_CR where mail = :mail");
+		q.setParameter("mail", user);
+		CA_CR userExtracted = (CA_CR) q.uniqueResult();
+
+		sesion.getTransaction().commit();
+		sesion.close();
+
+		return userExtracted.getDni();
+	}
 
 	public long obtain_id_unique() {
 		Session sesion = sessionFactory.openSession();

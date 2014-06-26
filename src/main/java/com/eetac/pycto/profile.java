@@ -1,10 +1,12 @@
 package com.eetac.pycto;
 
+import org.apache.wicket.Session;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.WebPage;
 
+import com.eetac.pycto.managers.ServerCACR;
 import com.eetac.pycto.models.Ballot_Box;
 
 public class profile extends WebPage {
@@ -13,6 +15,37 @@ public class profile extends WebPage {
 	public profile(final PageParameters parameters) {
 		super(parameters);
 
+		ServerCACR s = new ServerCACR();
+
+		Session sesio = getSession();
+
+		final Link<?> logout = new Link<Object>("logout")
+		        {
+		            @Override
+		            public void onClick()  //Quan apretem el boto de facebook, fara aixo
+		            {
+					  Session session = this.getSession();
+					  session.invalidateNow();
+					  
+					  PageParameters pageParameters = new PageParameters();
+					  setResponsePage(main.class, pageParameters);
+					  
+							
+		            }
+		        };
+		
+		add(logout);
+		if(sesio.getAttribute("user")==null)
+		{
+        	PageParameters pageParameters = new PageParameters();
+			setResponsePage(index.class, pageParameters);	
+		}
+		
+		String nom = (String) sesio.getAttribute("user");
+		
+		Label nombre = new Label("nombre",nom);
+		
+		Label dni = new Label("dni",s.obtain_dni(nom));
 		
 		final Link index = new Link("index")
 		{
@@ -85,6 +118,8 @@ public class profile extends WebPage {
 		};
 		
 		add(aboutus);
+		add(nombre);
+		add(dni);
 		add(uploadphoto);
 		add(uploadphoto1);
 		add(gallery);
