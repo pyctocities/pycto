@@ -1,6 +1,8 @@
 package com.eetac.pycto.managers;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -126,8 +128,7 @@ public class ServerBallotBox {
 
 		String[] JSON_Strings = vote_parts[0].split("&");
 		
-
-		FileWriter fichero = new FileWriter("..//votes_tot.txt",true);
+		FileWriter fichero = new FileWriter("../votes.txt",true);
 
 		PrintWriter pw = new PrintWriter(fichero);
 		try {
